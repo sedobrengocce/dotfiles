@@ -153,3 +153,5 @@ alias br="pomodoro 'break'"
 
 # Created by `pipx` on 2023-08-03 15:30:39
 export PATH="$PATH:/home/pepj/.local/bin"
+
+eval $(thefuck --alias)
