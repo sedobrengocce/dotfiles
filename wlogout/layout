@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "swaylock --clock --indicator --screenshots  --effect-blur 5x5 --datestr '%a %e.%m.%Y' --timestr '%k:%M' --indicator-radius 100 --indicator-thickness 10",
     "text" : "Lock",
     "keybind" : "l"
 }
