@@ -7,30 +7,33 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
-        "clock",
         "cpu",
-        "memory",
-        "disk",
-        "wlr/workspaces"
+        "temperature",
+        "custom/firstdecoration",
+        "wlr/workspaces",
+        "custom/seconddecoration",
+        "hyprland/window"
     ],
-    "modules-center": ["hyprland/window"],
     "modules-right": [
-        "tray",
         "network",
+        "custom/separator",
         "bluetooth",
-        "backlight",
+        "custom/separator",
         "pulseaudio",
-        "pulseaudio#microphone",
+        "custom/fourthdecoration",
+        "clock",
+        "custom/thirddecoration",
         "battery"
     ],
 
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "max-length": 200
     },
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "on-click": "activate",
+        "active-only": true,
         //"format": "{icon}",
         "persistent_workspaces": {
             "1": [],
@@ -45,36 +48,28 @@
             "10": []
         }
     },
-    "custom/updates": {
-        "format": "󰃘 {}",
-        "interval": 7200,                     // every two hours
-        "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
-        "exec-if": "exit 0",                  // always run; consider advanced run conditions
-        "on-click": "kitty -e sudo pacman -Syu", // update system
-        "signal": 8
+    "custom/separator": {
+        "format": " "
     },
-   "custom/weather" : {
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 30,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
+    "custom/firstdecoration": {
+      "format": "",
+      "tooltip": false
     },
-    "tray": {
-        "icon-size": 13,
-        "spacing": 10
+    "custom/seconddecoration": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/thirddecoration": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/fourthdecoration": {
+      "format": "",
+      "tooltip": false
     },
     "clock": {
-        "format": "{: %R   %d-%m-%Y}",
+        "format": "{:%a, %Y%m%d  %H%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
     },
     "battery": {
         "states": {
@@ -107,37 +102,20 @@
             "default": ["", "", ""]
         }
     },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click-right": "pamixer --default-source -t",
-        "on-click": "killall pavucontrol || pavucontrol",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
     "cpu": {
         "interval": 10,
         "format": " {usage}%",
         "max-length": 10,
-        "on-click": ""
+        "on-click": "killall btop || kitty --title btop sh -c 'btop'"
     },
-    "memory": {
-        "interval": 30,
-        "format": " {}%",
-        "on-click": "killall btop || kitty --title btop sh -c 'btop'",
-        "max-length": 50
-    },
-    "disk": {
-        "format": " {percentage_used}%",
-        "path": "/home",
-        "tooltip": true,
-        "interval": 30
+    "temperature": {
+	"critical-threshold": 80,
+	"format-critical": "{temperatureC}°C ",
+	"format": "{temperatureC}°C "
     },
     "network": {
         "format": "{ifname}",
-        "format-wifi": "  {essid} {signalStrength}%",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": "󰈀 ",
         "format-disconnected": "󰈂 Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",
@@ -148,10 +126,10 @@
         "max-length": 50
     },
     "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
+        "format": " ",
+        "format-connected": " ",
+        "format-off": "󰂲 ",
         "tooltip-format": " {device_alias}",
-        "tooltip-format-battery": " {device_alias} {device_battery_percentage}%",
-        "on-click": "killall blublueman-manager || blueman-manager"
+        "on-click": "killall blueman-manager || blueman-manager"
     }
 }
