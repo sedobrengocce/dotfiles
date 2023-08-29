@@ -122,7 +122,7 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} | {ipaddr}/{cidr} ",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "killall nm-connection-editor || nm-connection-editor ",
+        "on-click": "killall nmtui || kitty nmtui ",
         "max-length": 50
     },
     "bluetooth": {
