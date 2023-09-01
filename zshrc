@@ -95,10 +95,10 @@ pomodoro() {
     if [ -n "$1" -a -n "${pomo_opts["$1"]}" ]; then
         val=$1
         echo $val | lolcat
-        timer ${pomo_opts["$val"]}m
+        timer ${pomo_opts["$val"]}m && spd-say "'$val' session ended" || spd-say "'$val' session aborted"
     else
         echo $1
-        timer ${2}m
+        timer ${2}m && spd-say "'$1' session ended" || spd-say "'$1' session aborted
     fi
 }
 
