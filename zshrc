@@ -79,47 +79,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-sshPepjServer() {
-    ssh -t pepj@pepj-server 'tmux a -t Base'
-}
-
-sshHappee() {
-    ssh -t pepj@happee 'tmux a -t Base'
-}
-
-declare -A pomo_opts
-pomo_opts["work"]="45"
-pomo_opts["break"]="15"
-
-pomodoro() {
-    if [ -n "$1" -a -n "${pomo_opts["$1"]}" ]; then
-        val=$1
-        echo $val | lolcat
-        timer ${pomo_opts["$val"]}m && spd-say "'$val' session ended" || spd-say "'$val' session aborted"
-    else
-        echo $1
-        timer ${2}m && spd-say "'$1' session ended" || spd-say "'$1' session aborted
-    fi
-}
-
-sendNtfy() {
-    /bin/zsh -c $* && ntfy send "$* successfully executed" || ntfy send "$* failed"
-}
-
-fzSearch() {
-    if [ -n "$1" ]; then
-        find "$1" -print | fzf
-    else
-        find . -print | fzf
-    fi
-}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export PATH=$PATH:~/local/bin/:~/development/flutter/bin/
-export PATH=$PATH:/opt/android-sdk/cmdline-tools/latest/bin/
-
-export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -141,19 +103,6 @@ export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-unalias la
-unalias ll
-
-alias vim=nvim
-alias ls=lsd
-alias la='lsd -al'
-alias ll='lsd -l'
-alias wo="pomodoro 'work'"
-alias br="pomodoro 'break'"
 
 # Created by `pipx` on 2023-08-03 15:30:39
-export PATH="$PATH:/home/pepj/.local/bin"
 
-export EDITOR=nvim
-
-eval $(thefuck --alias)
