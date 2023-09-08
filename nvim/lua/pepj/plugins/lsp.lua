@@ -19,7 +19,8 @@ return {
         {'L3MON4D3/LuaSnip'},             -- Required
         {'rafamadriz/friendly-snippets'}, -- Optional
     },
-    lazy = false,
+    cmd = "Mason",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lsp = require('lsp-zero')
 
