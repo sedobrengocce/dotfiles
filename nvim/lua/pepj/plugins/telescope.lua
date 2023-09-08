@@ -9,6 +9,23 @@ return {
     },
     lazy = false,
     config = function()
+        
+        local telescope = require("telescope")
+        local actions = require("telescope.actions")
+
+        telescope.setup({
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-k>"] = actions.move_selection_previous,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                        ["<esc>"] = actions.close,
+                    },
+                },
+            },
+        })
+
         local builtin = require("telescope.builtin")
 
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
@@ -17,7 +34,6 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") });
         end)
 
-        local telescope = require("telescope")
         telescope.load_extension('dap')
 
         local dap = telescope.extensions.dap
