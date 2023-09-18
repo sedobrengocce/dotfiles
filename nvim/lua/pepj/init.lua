@@ -1,6 +1,7 @@
+vim.g.mapleader = " "
+
 require("pepj.set")
 require("pepj.remap")
-
-vim.g.mapleader = " "
+require("pepj.iremap")
 
 require("pepj.lazy")

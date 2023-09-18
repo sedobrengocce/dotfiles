@@ -7,6 +7,7 @@ return {
         {'<leader>gb', ':Git blame<CR>'},
         {'<leader>gps', ':Git push<CR>'},
         {'<leader>gpl', ':Git pull<CR>'},
+        {'<leader>gpl', ':Git fetch<CR>'},
         {'<leader>gmc', ':Gvdiffsplit!<CR>'},
     },
     config = function ()
