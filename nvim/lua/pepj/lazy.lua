@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("pepj.plugins", {
+require("lazy").setup({{import = "pepj.plugins"}, {import = "pepj.plugins.lsp"}}, {
     checker = {
         enable = true,
         notify = false,
