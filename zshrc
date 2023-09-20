@@ -106,3 +106,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Created by `pipx` on 2023-08-03 15:30:39
 
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"
