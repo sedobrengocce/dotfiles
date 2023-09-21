@@ -8,13 +8,13 @@ function select_packages() {
     exec 3>&1
 
     packages=`whiptail --title "Pepj dotfiles installer" --checklist "Select packages to install:" 20 61 15 \
-        "tmux" "Terminal multiplexer" OFF \
-        "zsh" "Z shell" OFF \
-        "hypr" "Hyprland" OFF \
-        "nvim" "Neovim" OFF \
-        "vifm" "Vifm" OFF \
-        "kitty" "Kitty" OFF \
-        "mpv" "Mpv" OFF \
+        "tmux" "Terminal multiplexer" ON \
+        "zsh" "Z shell" ON \
+        "hypr" "Hyprland" ON \
+        "nvim" "Neovim" ON \
+        "vifm" "Vifm" ON \
+        "kitty" "Kitty" ON \
+        "mpv" "Mpv" ON \
         2>&1 1>&3`
 
     exec 3>&-
