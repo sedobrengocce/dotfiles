@@ -107,7 +107,6 @@ function install_packages() {
         if [[ $packages == *"nvim"* ]]; then
             yay -Sy --noconfirm --needed neovim ripgrep
         fi
-        fi
         if [[ $packages == *"vifm"* ]]; then
             yay -Sy --noconfirm --needed vifm
         fi
