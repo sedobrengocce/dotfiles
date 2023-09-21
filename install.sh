@@ -7,7 +7,6 @@ packages=""
 function select_packages() {
     exec 3>&1
 
-    ## Selecte package to install using dialog
     packages=`whiptail --title "Pepj dotfiles installer" --checklist "Select packages to install:" 20 61 15 \
         "tmux" "Terminal multiplexer" OFF \
         "zsh" "Z shell" OFF \
@@ -43,6 +42,7 @@ function install_packages() {
     for package in $packages; do
         if [[ $package == *"zsh"* ]]; then 
             yay -Sy --noconfirm --needed zsh python-pip pyenv
+            cd ~
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             pyenv install 2.7.18
             pyenv init
@@ -59,6 +59,7 @@ function install_packages() {
                 nodejs \
                 timer-bin \
                 clp-git
+            cd $pwd
         fi
         if [[ $packages == *"tmux"* ]]; then
             yay -Sy --noconfirm --needed tmux
@@ -167,7 +168,6 @@ function copy_config() {
 echo "Installing Base packages"
 install_yay
 
-echo "Installing packages"
 select_packages
 
 install_packages
