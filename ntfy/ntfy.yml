@@ -1,6 +1,6 @@
---- 
-backends: 
-    - linux
-    - pushbullet
+---
+backends:
+  - linux
+  - pushbullet
 pushbullet:
-    access_token: "o.VQHix6IMwFB88lcvfS2KlxFmIawGWGoC"
+  access_token: "o.CFwEc0kZsBlIe0diOnFMgCrCqRLyClJx"

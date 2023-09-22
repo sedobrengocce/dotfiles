@@ -15,6 +15,11 @@ function select_packages() {
         "vifm" "Vifm" ON \
         "kitty" "Kitty" ON \
         "mpv" "Mpv" ON \
+        "utils" "Utils" OFF \
+        "chrome" "Google Chrome" OFF \
+        "gimp" "GIMP" OFF \
+        "blender" "Blender" OFF \
+        "telegram" "Telegram" OFF \
         2>&1 1>&3`
 
     exec 3>&-
@@ -40,6 +45,24 @@ function install_packages() {
     local pacman_packages=""
     local aur_packages=""
     for package in $packages; do
+        if [[ $package == *"chrome"* ]]; then
+            yay -Sy google-chrome
+        fi
+        if [[ $package == *"gimp"* ]]; then
+            yay -Sy --noconfirm --needed gimp
+        fi
+        if [[ $package == *"blender"* ]]; then
+            yay -Sy --noconfirm --needed blender
+        fi
+        if [[ $package == *"telegram"* ]]; then
+            yay -Sy --noconfirm --needed telegram-desktop
+        fi
+        if [[ $package == *"utils"* ]]; then
+            yay -Sy pass\
+                browserpass \
+                pacman-contrib \
+                bat
+        fi
         if [[ $package == *"zsh"* ]]; then 
             yay -Sy --noconfirm --needed zsh python-pip pyenv
             cd ~
@@ -58,7 +81,8 @@ function install_packages() {
                 lsd \
                 nodejs \
                 timer-bin \
-                clp-git
+                clp-git \
+                npm
             cd $pwd
         fi
         if [[ $packages == *"tmux"* ]]; then
@@ -69,6 +93,13 @@ function install_packages() {
                 polkit-gnome \
                 ffmpeg \
                 viewnior \
+                pipewire \
+                pipewire-alsa \
+                pipewire-audio \
+                pipewire-pulse \
+                pipewire-jack \
+                wireplumber \
+                gst-plugin-pipewire \
                 pavucontrol \
                 starship \
                 wl-clipboard \
@@ -102,7 +133,10 @@ function install_packages() {
                 brightnessctl \
                 hyprpicker-git \
                 fuzzel \
-                btop 
+                btop \
+                bluez \
+                bluez-utils \
+                blueman
         fi
         if [[ $packages == *"nvim"* ]]; then
             yay -Sy --noconfirm --needed neovim ripgrep
@@ -135,28 +169,28 @@ function copy_config() {
         ln -s $PWD/tmux ~/.tmux
     fi
     if [[ $packages == *"hypr"* ]]; then
-        ln -s $PWD/hypr ~/.config/.hypr
-        ln -s $PWD/waybar ~/.config/.waybar
-        ln -s $PWD/wlogout ~/.config/.wlogout
-        ln -s $PWD/swaylock ~/.config/.swaylock
-        ln -s $PWD/fuzzel ~/.config/.fuzzel
+        ln -s $PWD/hypr ~/.config/hypr
+        ln -s $PWD/waybar ~/.config/waybar
+        ln -s $PWD/wlogout ~/.config/wlogout
+        ln -s $PWD/swaylock ~/.config/swaylock
+        ln -s $PWD/fuzzel ~/.config/fuzzel
         ln -s $PWD/btop ~/.config/btop
     fi
     if [[ $packages == *"nvim"* ]]; then
-        ln -s $PWD/nvim ~/.config/.nvim
+        ln -s $PWD/nvim ~/.config/nvim
     fi
     if [[ $packages == *"vifm"* ]]; then
-        ln -s $PWD/vifm ~/.config/.vifm
+        ln -s $PWD/vifm ~/.config/vifm
     fi
     if [[ $packages == *"kitty"* ]]; then
-        ln -s $PWD/kitty ~/.config/.kitty
+        ln -s $PWD/kitty ~/.config/kitty
     fi
     if [[ $packages == *"mpv"* ]]; then
         ln -s $PWD/mpv ~/.config/mpv
     fi
     if [[ $packages == *"zsh"* ]]; then
         ln -s $PWD/zshrc ~/.zshrc
-        ln -s $PWD/ntfy ~/.config/.ntfy
+        ln -s $PWD/ntfy ~/.config/ntfy
         ln -s $PWD/neofetch ~/.config/neofetch
         ln -s $PWD/oh-my-zsh-theme/pepj.zsh-theme ~/.oh-my-zsh/themes/pepj.zsh-theme
         mkdir -p ~/.oh-my-zsh/plugins/pepj
