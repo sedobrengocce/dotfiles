@@ -1,5 +1,4 @@
 return {
-
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
 	dependencies = {
@@ -7,6 +6,7 @@ return {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-dap.nvim" },
 		{ "mfussenegger/nvim-dap" },
+		{ "nvim-telescope/telescope-file-browser.nvim" },
 	},
 	lazy = false,
 	config = function()
@@ -24,6 +24,7 @@ return {
 					},
 				},
 			},
+			extensions = {},
 		})
 
 		local builtin = require("telescope.builtin")
@@ -42,5 +43,9 @@ return {
 		local dap = telescope.extensions.dap
 
 		vim.keymap.set("n", "<leader>lbr", dap.list_breakpoints, {})
+
+		telescope.load_extension("file_browser")
+
+		vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {})
 	end,
 }

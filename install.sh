@@ -31,11 +31,12 @@ function install_yay() {
     exec 3>&-
     sudo -S <<< $pass pacman -S --noconfirm --needed base-devel git wget unzip
     cd ~
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
     makepkg -si
     cd ..
-    rm -rf yay
+    rm -rf paru
+    alias yay="paru"
     cd $pwd
 }
 
@@ -78,6 +79,7 @@ function install_packages() {
                 fzf \
                 thefuck \
                 speech-dispatcher \
+                espeakup \
                 lsd \
                 nodejs \
                 timer-bin \

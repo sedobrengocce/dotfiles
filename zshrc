@@ -104,7 +104,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias yay="paru"
 # Created by `pipx` on 2023-08-03 15:30:39
 
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+export ANDROID_HOME=$HOME/android-sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export JAVA_HOME=/usr/lib/jvm/java-20-openjdk
