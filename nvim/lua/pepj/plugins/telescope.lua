@@ -12,6 +12,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local fb_actions = telescope.extensions.file_browser.actions
 
 		telescope.setup({
 			defaults = {
@@ -24,7 +25,17 @@ return {
 					},
 				},
 			},
-			extensions = {},
+			extensions = {
+				file_browser = {
+					mappings = {
+						i = {
+							["<C-N>"] = fb_actions.create,
+							["<C-R>"] = fb_actions.rename,
+							["<C-D>"] = fb_actions.remove,
+						},
+					},
+				},
+			},
 		})
 
 		local builtin = require("telescope.builtin")
