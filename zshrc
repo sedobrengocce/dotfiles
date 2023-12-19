@@ -112,5 +112,5 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export ANDROID_HOME=$HOME/android-sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export JAVA_HOME=/usr/lib/jvm/java-20-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 . env_parallel.zsh
