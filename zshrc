@@ -105,6 +105,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias yay="paru"
+alias ardCompile='arduino-cli compile -b  arduino:avr:uno'
+alias ardUpload='arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0'
 # Created by `pipx` on 2023-08-03 15:30:39
 
 
