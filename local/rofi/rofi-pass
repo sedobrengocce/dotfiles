@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+cd /home/pepj/.password-store
+pass_list=$(find . -not -path '*/.*' | grep gpg | cut -d/ -f2- | awk -F. '{print $1}')
+action_list="Read\nEdit\nGenerate\nRemove\nInsert"
+
+chosen_action=$(echo -e "$action_list" | rofi -dmenu -p "Action")
+
+if [[ $chosen_action == "Read" ]]; then
+    chosen_pass=$(echo -e "$pass_list" | rofi -dmenu -p "Pass")
+    pass -c $chosen_pass
+elif [[ $chosen_action == "Edit" ]]; then
+    chosen_pass=$(echo -e "$pass_list" | rofi -dmenu -p "Pass")
+    kitty pass edit $chosen_pass
+elif [[ $chosen_action == "Generate" ]]; then
+    chosen_pass=$(rofi -dmenu -p "Name:")
+    pass generate $chosen_pass 
+elif [[ $chosen_action == "Remove" ]]; then
+    chosen_pass=$(echo -e "$pass_list" | rofi -dmenu -p "Pass")
+    kitty pass rm $chosen_pass
+elif [[ $chosen_action == "Insert" ]]; then
+    chosen_pass=$(rofi -dmenu -p "Name")
+    kitty pass insert $chosen_pass
+fi
