@@ -109,6 +109,7 @@ alias ardCompile='arduino-cli compile -b  arduino:avr:uno'
 alias ardUpload='arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0'
 # Created by `pipx` on 2023-08-03 15:30:39
 
+export PATH=$PATH:/home/pepj/.local/share/gem/ruby/3.0.0/bin
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
@@ -116,3 +117,6 @@ export ANDROID_HOME=$HOME/android-sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 . env_parallel.zsh
+
+# opam configuration
+[[ ! -r /home/pepj/.opam/opam-init/init.zsh ]] || source /home/pepj/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

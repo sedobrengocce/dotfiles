@@ -30,6 +30,12 @@ pomodoro() {
     fi
 }
 
+sshvim() { 
+    vared -p 'Password: ' -c pass
+    expect -c "spawn ssh -MNv $1; expect '*?assword*'; send $pass; interact" &
+    nvim scp://$1/$2
+}
+
 sendNtfy() {
     /bin/zsh -c $* && ntfy send "$* successfully executed" || ntfy send "$* failed"
 }

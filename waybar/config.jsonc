@@ -1,135 +1,135 @@
 {
-    "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
-    "height": 0,
-    "modules-left": [
-        "cpu",
-        "temperature",
-        "custom/firstdecoration",
-        "wlr/workspaces",
-        "custom/seconddecoration",
-        "hyprland/window"
-    ],
-    "modules-right": [
-        "network",
-        "custom/separator",
-        "bluetooth",
-        "custom/separator",
-        "pulseaudio",
-        "custom/fourthdecoration",
-        "clock",
-        "custom/thirddecoration",
-        "battery"
-    ],
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 0,
+  "modules-left": [
+    "cpu",
+    "temperature",
+    "custom/firstdecoration",
+    "wlr/workspaces",
+    "custom/seconddecoration",
+    "hyprland/window",
+  ],
+  "modules-right": [
+    "network",
+    "custom/separator",
+    "bluetooth",
+    "custom/separator",
+    "pulseaudio",
+    "custom/fourthdecoration",
+    "clock",
+    "custom/thirddecoration",
+    "battery",
+  ],
 
-    "hyprland/window": {
-        "format": "{}",
-        "max-length": 200
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 200,
+  },
+  "wlr/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "active-only": true,
+    //"format": "{icon}",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
     },
-    "wlr/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "active-only": true,
-        //"format": "{icon}",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
+  },
+  "custom/separator": {
+    "format": " ",
+  },
+  "custom/firstdecoration": {
+    "format": "",
+    "tooltip": false,
+  },
+  "custom/seconddecoration": {
+    "format": "",
+    "tooltip": false,
+  },
+  "custom/thirddecoration": {
+    "format": "",
+    "tooltip": false,
+  },
+  "custom/fourthdecoration": {
+    "format": "",
+    "tooltip": false,
+  },
+  "clock": {
+    "format": "{:%a, %Y%m%d  %H%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20,
     },
-    "custom/separator": {
-        "format": " "
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "format-muted": " Muted",
+    "on-click-right": "pamixer -t",
+    "on-click": "killall pavucontrol || pavucontrol",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
     },
-    "custom/firstdecoration": {
-      "format": "",
-      "tooltip": false
-    },
-    "custom/seconddecoration": {
-      "format": "",
-      "tooltip": false
-    },
-    "custom/thirddecoration": {
-      "format": "",
-      "tooltip": false
-    },
-    "custom/fourthdecoration": {
-      "format": "",
-      "tooltip": false
-    },
-    "clock": {
-        "format": "{:%a, %Y%m%d  %H%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": [ "󰂎", "󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "tooltip": false,
-        "format-muted": " Muted",
-        "on-click-right": "pamixer -t",
-        "on-click": "killall pavucontrol || pavucontrol",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
-    },
-    "cpu": {
-        "interval": 10,
-        "format": " {usage}%",
-        "max-length": 10,
-        "on-click": "killall btop || kitty --title btop sh -c 'btop'"
-    },
-    "temperature": {
-	"critical-threshold": 80,
-	"format-critical": "{temperatureC}°C ",
-	"format": "{temperatureC}°C "
-    },
-    "network": {
-        "format": "{ifname}",
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰈂 Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} | {ipaddr}/{cidr} ",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "killall nmtui || kitty nmtui ",
-        "max-length": 50
-    },
-    "bluetooth": {
-        "format": " ",
-        "format-connected": " ",
-        "format-off": "󰂲 ",
-        "tooltip-format": " {device_alias}",
-        "on-click": "killall blueman-manager || blueman-manager"
-    }
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}%",
+    "max-length": 10,
+    "on-click": "killall btop || kitty --title btop sh -c 'btop'",
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰈂 Disconnected",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} | {ipaddr}/{cidr} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "killall nmtui || kitty nmtui ",
+    "max-length": 50,
+  },
+  "bluetooth": {
+    "format": " ",
+    "format-connected": " ",
+    "format-off": "󰂲 ",
+    "tooltip-format": " {device_alias} {device_battery_percentage}%",
+    "on-click": "killall blueman-manager || blueman-manager",
+  },
 }

@@ -1,0 +1,44 @@
+[pyprland]
+plugins = ["scratchpads"]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-scratch"
+class = "kitty-scratch"
+size = "80% 80%"
+margin = 100
+lazy = true
+unfocus = "hide"
+
+[scratchpads.logseq]
+animation = "fromTop"
+command = "logseq --enable-wayland-ime --enable-features=WaylandWindowDecorations"
+class = "logseq-scratch"
+size = "80% 80%"
+margin = 100
+unfocus = "hide"
+
+[scratchpads.whatsapp]
+animation = "fromTop"
+command = "whatsapp-for-linux"
+class = "whatsapp-scratch"
+size = "80% 80%"
+margin = 100
+unfocus = "hide"
+
+[scratchpads.telegram]
+animation = "fromTop"
+command = "telegram-desktop"
+class = "telegram-scratch"
+size = "80% 80%"
+margin = 100
+unfocus = "hide"
+
+[scratchpads.explorer]
+animation = "fromTop"
+command = "kitty --class explorer-scratch yazi"
+class = "explorer-scratch"
+size = "80% 80%"
+margin = 100
+lazy = true
+unfocus = "hide"
