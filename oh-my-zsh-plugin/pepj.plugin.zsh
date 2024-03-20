@@ -30,12 +30,6 @@ pomodoro() {
     fi
 }
 
-sshvim() { 
-    vared -p 'Password: ' -c pass
-    expect -c "spawn ssh -MNv $1; expect '*?assword*'; send $pass; interact" &
-    nvim scp://$1/$2
-}
-
 sendNtfy() {
     /bin/zsh -c $* && ntfy send "$* successfully executed" || ntfy send "$* failed"
 }
@@ -59,8 +53,8 @@ alias vim=nvim
 alias ls=lsd
 alias la='lsd -al'
 alias ll='lsd -l'
-alias wo="pomodoro 'work'"
-alias br="pomodoro 'break'"
+alias wo="pomodoro 'work' 45"
+alias br="pomodoro 'break' 15"
 alias l='less'
 alias m='more'
 alias nrun='npm run'

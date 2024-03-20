@@ -21,13 +21,18 @@ return {
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-						["<esc>"] = actions.close,
+						["<c-["] = actions.close,
 					},
 				},
 			},
 			extensions = {
 				file_browser = {
+					hidden = true,
 					mappings = {
+						n = {
+							["h"] = telescope.extensions.file_browser.actions.goto_parent_dir,
+							["l"] = actions.select_default,
+						},
 						i = {
 							["<C-N>"] = fb_actions.create,
 							["<C-R>"] = fb_actions.rename,
@@ -40,7 +45,11 @@ return {
 
 		local builtin = require("telescope.builtin")
 
-		vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+		vim.keymap.set("n", "<leader>pf", function()
+			builtin.find_files({
+				find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+			})
+		end)
 		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 		vim.keymap.set("n", "<leader>tbr", builtin.git_branches, {})
 		vim.keymap.set("n", "<leader>tbf", builtin.buffers, {})

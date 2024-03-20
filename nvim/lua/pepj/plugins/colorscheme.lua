@@ -2,7 +2,7 @@ return {
 	"marko-cerovac/material.nvim",
 	dependencies = {
 		"nvim-lualine/lualine.nvim",
-		"kyazdani42/nvim-web-devicons",
+		"nvim-tree/nvim-web-devicons",
 	},
 	priority = 1000,
 	config = function()

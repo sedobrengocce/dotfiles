@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"neovim/nvim-lspconfig",
-		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/nvim-cmp-lsp",
 		{
 			"williamboman/mason.nvim",
 			config = function()
@@ -89,7 +89,7 @@ return {
 
 		local masonLspconfig = require("mason-lspconfig")
 		local cmp_lsp = require("cmp_nvim_lsp")
-		local capabilites = cmp_lsp.default_capabilities()
+		local capabilites = cmp_lsp.debounce_capabilities()
 		masonLspconfig.setup({
 			ensure_installed = {
 				"lua_ls",
@@ -103,64 +103,59 @@ return {
 				"tailwindcss",
 				"arduino_language_server",
 				"dockerls",
-				"docker_compose_language_service",
+				"docker_compose_language_server",
 				"eslint",
 				"intelephense",
 			},
 
 			handlers = {
 				function(server_name)
+					local onAttach = on_attach
+					if server_name == "marksman" then
+						onAttach = md_on_attach
+					elseif server_name == "dartls" then
+						onAttach = dart_on_attach
+					end
 					lspconfig[server_name].setup({
 						capabilites = capabilites,
-						on_attach = on_attach,
+						on_attach = onAttach,
 					})
 				end,
-				["marksman"] = function()
-					lspconfig["marksman"].setup({
-						on_attach = md_on_attach,
-					})
-				end,
-				["dartls"] = function()
-					lspconfig["dartls"].setup({
-						on_attach = dart_on_attach,
-					})
-				end,
-				["gopls"] = function()
-					lspconfig["gopls"].setup({
-						on_attach = on_attach,
-						filetypes = { "go", "gomod", "gowork", "gotmpl" },
-						root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
-						settings = {
-							gopls = {
-								completeUnimported = true,
-								usePlaceholders = true,
-								analyses = {
-									unusedparams = true,
-								},
-							},
+			},
+		})
+		-- configure python server
+		lspconfig["gopls"].setup({
+			on_attach = on_attach,
+			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+			root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					usePlaceholders = true,
+					analyses = {
+						unusedparams = true,
+					},
+				},
+			},
+		})
+
+		-- configure lua server (with special settings)
+		lspconfig["lua_ls"].setup({
+			on_attach = on_attach,
+			settings = { -- custom settings for lua
+				Lua = {
+					-- make the language server recognize "vim" global
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
 						},
-					})
-				end,
-				["lua_ls"] = function()
-					lspconfig["lua_ls"].setup({
-						on_attach = on_attach,
-						settings = { -- custom settings for lua
-							Lua = {
-								-- make the language server recognize "vim" global
-								diagnostics = {
-									globals = { "vim" },
-								},
-								workspace = {
-									-- make language server aware of runtime files
-									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-										[vim.fn.stdpath("config") .. "/lua"] = true,
-									},
-								},
-							},
-						},
-					})
-				end,
+					},
+				},
 			},
 		})
 	end,
