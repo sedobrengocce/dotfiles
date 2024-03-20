@@ -75,6 +75,7 @@ return {
 				},
 			},
 		},
+        "nvim-neotest/nvim-nio"
 	},
 	keys = {
 		{
