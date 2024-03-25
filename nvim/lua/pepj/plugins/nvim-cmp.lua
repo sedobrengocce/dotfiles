@@ -25,8 +25,8 @@ return {
 				completeopt = "menu,menuone,preview,noselect",
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-n>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-				["<C-p>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+				["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-x>"] = cmp.mapping.abort(), -- close completion window
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
