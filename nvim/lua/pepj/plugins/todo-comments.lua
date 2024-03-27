@@ -6,7 +6,7 @@ return {
     },
     opts = {},
     keys = {
-        { "n", "<leader>ttd", "<cmd>TodoTelescope<cr>" },
-        { "n", "<leader>ttr", "<cmd>TodoToruble<cr>" },
+        { "<leader>ttd", "<cmd>TodoTelescope<cr>" },
+        { "<leader>ttr", "<cmd>TodoTrouble<cr>" },
     },
 }
