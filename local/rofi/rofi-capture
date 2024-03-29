@@ -11,7 +11,7 @@ elif [[ $action == "Stop Video Capture" ]]; then
     killall wf-recorder
 elif [[ $action == "Screenshot a Window" ]]; then
     notify-send "Screenshot" "Window"
-    hyprshot -m window -f ~/Pictures/screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
+    hyprshot -m window -f screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
 elif [[ $action == "Screenshot a Window in Clipboard" ]]; then
     notify-send "Screenshot" "Window"
     hyprshot -m window --clipboard-only
@@ -23,8 +23,8 @@ elif [[ $action == "Screenshot a Selected Area in Clipboard" ]]; then
     hyprshot -m region --clipboard-only
 elif [[ $action == "Screenshot the Entire Screen" ]]; then
     notify-send "Screenshot" "Screen"
-    hyprshot -m output -f ~/Pictures/screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
+    hyprshot -m output -f screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
 elif [[ $action == "Screenshot a Selected Area" ]]; then
     notify-send "Screenshot" "Area"
-    hyprshot -m region -f ~/Pictures/screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
+    hyprshot -m region -f screenshot-$(date +"%Y-%m-%d--%H-%M-%S.png")
 fi
