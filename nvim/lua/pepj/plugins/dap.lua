@@ -90,42 +90,42 @@ return {
 			function()
 				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition > "))
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Toggle Conditional Breakpoint",
 		},
 		{
 			"<F5>",
 			function()
 				require("dap").continue()
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Continue",
 		},
 		{
 			"<F10>",
 			function()
 				require("dap").step_over()
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Step Over",
 		},
 		{
 			"<F11>",
 			function()
 				require("dap").step_into()
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Step Into",
 		},
 		{
 			"<F12>",
 			function()
 				require("dap").step_out()
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Step Out",
 		},
 		{
 			"<leader><F5>",
 			function()
 				require("dap").repl.open()
 			end,
-			desc = "Toggle Breakpoint",
+			desc = "Open REPL",
 		},
 	},
 	config = function()
