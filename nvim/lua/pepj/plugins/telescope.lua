@@ -8,6 +8,62 @@ return {
 		{ "mfussenegger/nvim-dap" },
 		{ "nvim-telescope/telescope-file-browser.nvim" },
 	},
+    keys = {
+        { "<leader>pf",
+            function()
+                require("telescope.builtin").find_files({
+                    find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+                })
+            end,
+            desc = "Find files",
+        },
+        { "<C-p>",
+            function()
+                require("telescope.builtin").git_files()
+            end,
+            desc = "Git files",
+        },
+        { "<leader>tbs",
+            function()
+                require("telescope.builtin").current_buffer_fuzzy_find()
+            end,
+            desc = "Current buffer fuzzy find",
+        },
+        { "<leader>tbr",
+            function()
+                require("telescope.builtin").git_branches()
+            end,
+            desc = "Git branches",
+        },
+        { "<leader>tbf",
+            function()
+                require("telescope.builtin").buffers()
+            end,
+            desc = "Buffers",
+        },
+        { "<leader>ter",
+            function()
+                require("telescope.builtin").diagnostics()
+            end,
+            desc = "Diagnostics",
+        },
+        { "<leader>ps",
+            function()
+                require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+            end,
+            desc = "Grep string",
+        },
+        { "<leader>lbr",
+            function()
+                require("telescope.extensions.dap").list_breakpoints()
+            end,
+            desc = "List breakpoints",
+        },
+        { "<leader>pv",
+            ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+            desc = "File browser",
+        },
+    },
 	lazy = false,
 	config = function()
 		local telescope = require("telescope")
@@ -43,29 +99,11 @@ return {
 			},
 		})
 
-		local builtin = require("telescope.builtin")
-
-		vim.keymap.set("n", "<leader>pf", function()
-			builtin.find_files({
-				find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
-			})
-		end)
-		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-		vim.keymap.set("n", "<leader>tbr", builtin.git_branches, {})
-		vim.keymap.set("n", "<leader>tbf", builtin.buffers, {})
-		vim.keymap.set("n", "<leader>ter", builtin.diagnostics, {})
-		vim.keymap.set("n", "<leader>ps", function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end)
+        telescope.load_extension("fzf")
 
 		telescope.load_extension("dap")
 
-		local dap = telescope.extensions.dap
-
-		vim.keymap.set("n", "<leader>lbr", dap.list_breakpoints, {})
-
 		telescope.load_extension("file_browser")
 
-		vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {})
 	end,
 }
