@@ -4,6 +4,7 @@ return {
 		{ "nvim-tree/nvim-web-devicons" },
 		{ "folke/lsp-colors.nvim" },
 	},
+    event = "VeryLazy",
 	config = function()
 		local trouble = require("trouble")
 		vim.keymap.set("n", "<leader>trt", function()
