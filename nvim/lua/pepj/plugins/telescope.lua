@@ -49,7 +49,8 @@ return {
         },
         { "<leader>ps",
             function()
-                require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+                require("telescope.builtin").live_grep()
+                --require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
             end,
             desc = "Grep string",
         },

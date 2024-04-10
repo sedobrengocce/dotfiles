@@ -21,4 +21,5 @@ vim.keymap.set("n", "<leader>td", ":bdelete<CR>")
 vim.keymap.set("n", "<leader>tfc", ":bdelete!<CR>")
 vim.keymap.set("n", "<leader>tl", ":b#<CR>")
 
-vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>")
+vim.keymap.set("n", "<leader>th", ":nohl<CR>")
