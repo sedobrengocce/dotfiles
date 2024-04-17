@@ -1,15 +1,6 @@
 return {
-	"tpope/vim-fugitive",
-	dependencies = "lewis6991/gitsigns.nvim",
-	keys = {
-		{ "<leader>gs", vim.cmd.Git },
-		{ "<leader>gd", vim.cmd.Gvdiffsplit },
-		{ "<leader>gb", ":Git blame<CR>" },
-		{ "<leader>gps", ":Git push<CR>" },
-		{ "<leader>gpl", ":Git pull<CR>" },
-		{ "<leader>gpf", ":Git fetch<CR>" },
-		{ "<leader>gmc", ":Gvdiffsplit!<CR>" },
-	},
+	"lewis6991/gitsigns.nvim",
+    event = "BufRead",
 	config = function()
 		require("gitsigns").setup({
 			signs = {
