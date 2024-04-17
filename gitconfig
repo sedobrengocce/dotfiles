@@ -1,0 +1,19 @@
+[user]
+	email = pepj2000@gmail.com
+	name = Giuseppe Tufo
+[init]
+	defaultBranch = main
+[core]
+    pager = delta
+    editor = nvim
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    keep-plus-minus-markers = true
+    line-numbers = true
+    side-by-side = true
+    decorations = true
