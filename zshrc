@@ -113,7 +113,7 @@ _fzf_pass_clip_key() {
 }
 
 _fzf_pass_clip_user() {
-    find ~/.password-store -not -path '*/.password-store/.*' -print | cut -d'/' -f5- | tail -n +2 | sed 's/.gpg//' | sort -n | grep '/' | fzf | xargs pass | tail -1 | awk '{print $2}' | wl-copy
+    find ~/.password-store -not -path '*/.password-store/.*' -print | cut -d'/' -f5- | tail -n +2 | sed 's/.gpg//' | sort -n | grep '/' | fzf | xargs pass | tail -1 | awk '{print $2}' | wl-copy -n
 }
 
 _fzf_pass_init() {
