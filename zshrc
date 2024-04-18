@@ -103,11 +103,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+fzf-pass() {
+    pass `find .password-store -not -path '*/.*' -print | cut -d'/' -f2- | tail -n +2 | sed 's/.gpg//' | grep '/' | fzf`
+}
 
 alias yay="paru"
 alias ardCompile='arduino-cli compile -b  arduino:avr:uno'
 alias ardUpload='arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0'
 alias lg='lazygit'
+alias pass="fzf-pass"
 # Created by `pipx` on 2023-08-03 15:30:39
 
 export PATH=$PATH:/home/pepj/.local/share/gem/ruby/3.0.0/bin
