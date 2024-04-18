@@ -103,15 +103,33 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-fzf-pass() {
-    pass `find .password-store -not -path '*/.*' -print | cut -d'/' -f2- | tail -n +2 | sed 's/.gpg//' | grep '/' | fzf`
+_fzf_pass_print() {
+    find ~/.password-store -not -path '*/.password-store/.*' -print | cut -d'/' -f5- | tail -n +2 | sed 's/.gpg//' | sort -n | grep '/' | fzf | xargs pass;
 }
+
+
+_fzf_pass_clip_key() {
+    find ~/.password-store -not -path '*/.password-store/.*' -print | cut -d'/' -f5- | tail -n +2 | sed 's/.gpg//' | sort -n | grep '/' | fzf | xargs pass -c > /dev/null
+}
+
+_fzf_pass_clip_user() {
+    find ~/.password-store -not -path '*/.password-store/.*' -print | cut -d'/' -f5- | tail -n +2 | sed 's/.gpg//' | sort -n | grep '/' | fzf | xargs pass | tail -1 | awk '{print $2}' | wl-copy
+}
+
+_fzf_pass_init() {
+    zle -N _fzf_pass_print
+    zle -N _fzf_pass_clip_key
+    zle -N _fzf_pass_clip_user
+    bindkey '^k^p' _fzf_pass_print
+    bindkey '^k^k' _fzf_pass_clip_key
+    bindkey '^k^u' _fzf_pass_clip_user
+}
+
 
 alias yay="paru"
 alias ardCompile='arduino-cli compile -b  arduino:avr:uno'
 alias ardUpload='arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0'
 alias lg='lazygit'
-alias pass="fzf-pass"
 # Created by `pipx` on 2023-08-03 15:30:39
 
 export PATH=$PATH:/home/pepj/.local/share/gem/ruby/3.0.0/bin
@@ -186,3 +204,5 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
+
+_fzf_pass_init
