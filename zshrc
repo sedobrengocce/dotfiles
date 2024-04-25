@@ -206,3 +206,6 @@ _fzf_comprun() {
 }
 
 _fzf_pass_init
+
+# zoxide
+eval "$(zoxide init --cmd cd zsh)"
