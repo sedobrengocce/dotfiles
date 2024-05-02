@@ -130,6 +130,7 @@ alias yay="paru"
 alias ardCompile='arduino-cli compile -b  arduino:avr:uno'
 alias ardUpload='arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0'
 alias lg='lazygit'
+alias neofetch=fastfetch
 # Created by `pipx` on 2023-08-03 15:30:39
 
 export PATH=$PATH:/home/pepj/.local/share/gem/ruby/3.0.0/bin
