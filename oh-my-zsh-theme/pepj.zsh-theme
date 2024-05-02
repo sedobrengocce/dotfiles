@@ -228,6 +228,6 @@ setprompt
 # add-zsh-hook precmd pepj_rprompt
 
 #-----Print new line
-neofetch
+fastfetch
 zshrc_load_status 'Loading completed'
 echo
