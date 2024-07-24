@@ -87,6 +87,8 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+        vim.filetype.add({ extension = { templ = "templ" } })
+
 		local masonLspconfig = require("mason-lspconfig")
 		local cmp_lsp = require("cmp_nvim_lsp")
 		local capabilites = cmp_lsp.default_capabilities()
@@ -106,6 +108,9 @@ return {
 				"docker_compose_language_service",
 				"eslint",
 				"intelephense",
+                "ccls",
+                "cmake",
+                "templ",
 			},
 
 			handlers = {
@@ -125,6 +130,19 @@ return {
 						on_attach = dart_on_attach,
 					})
 				end,
+                ["htmx"] = function()
+                    lspconfig["htmx"].setup({
+                        on_attach = on_attach,
+                        capabilities = capabilites,
+                        filetypes = { "htmx", "templ" },
+                    })
+                end,
+                ["templ"] = function()
+                    lspconfig["temlp"].setup({
+                        on_attach = on_attach,
+                        capabilities = capabilites,
+                    })
+                end,
 				["gopls"] = function()
 					lspconfig["gopls"].setup({
 						on_attach = on_attach,

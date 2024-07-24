@@ -136,6 +136,7 @@ alias neofetch=fastfetch
 export PATH=$PATH:/home/pepj/.local/share/gem/ruby/3.0.0/bin
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH":"$HOME/go/bin"
 
 export ANDROID_HOME=$HOME/android-sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
