@@ -74,11 +74,6 @@ return {
 			on_attach(client, bufnr)
 		end
 
-		local dart_on_attach = function(client, bufnr)
-			keymap.set("n", "<leader>df", ":!dart format .<CR>")
-			on_attach(client, bufnr)
-		end
-
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -108,7 +103,6 @@ return {
 				"docker_compose_language_service",
 				"eslint",
 				"intelephense",
-                "ccls",
                 "cmake",
                 "templ",
 			},
@@ -125,22 +119,11 @@ return {
 						on_attach = md_on_attach,
 					})
 				end,
-				["dartls"] = function()
-					lspconfig["dartls"].setup({
-						on_attach = dart_on_attach,
-					})
-				end,
                 ["htmx"] = function()
                     lspconfig["htmx"].setup({
                         on_attach = on_attach,
                         capabilities = capabilites,
                         filetypes = { "htmx", "templ" },
-                    })
-                end,
-                ["templ"] = function()
-                    lspconfig["temlp"].setup({
-                        on_attach = on_attach,
-                        capabilities = capabilites,
                     })
                 end,
 				["gopls"] = function()

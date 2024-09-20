@@ -84,7 +84,7 @@ return {
 
 			plugins = { -- Uncomment the plugins that you use to highlight them
 				-- Available plugins:
-				-- "dap",
+				"dap",
 				-- "dashboard",
 				"gitsigns",
 				-- "hop",
@@ -98,7 +98,7 @@ return {
 				-- "nvim-web-devicons",
 				-- "sneak",
 				"telescope",
-				-- "trouble",
+				"trouble",
 				"which-key",
 			},
 			disable = {
