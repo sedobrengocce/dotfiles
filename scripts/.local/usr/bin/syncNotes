@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PWD=`pwd`
+
+datetime=`date "+%Y%m%d-%H%M%S"`
+
+cd ~/notes/
+git add .
+git commit -m "sync notes $datetime"
+git pull origin main 
+git push origin main
+
+echo "Syncing notes done."
+
+cd $PWD
+
+echo "Press any key to continue..."
+read -n 1
