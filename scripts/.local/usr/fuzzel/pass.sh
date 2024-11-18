@@ -12,18 +12,15 @@ chosen_action=$(echo -e "$action_list" | fuzzel --dmenu -p "Action: ")
 
 if [[ $chosen_action == "Read" ]]; then
     chosen_pass=$(printf '%s\n' "${passFiles[@]}" | fuzzel --dmenu -p "Pass: ")
-    [[ -n $password ]] || exit
-    pass show -c $chosen_pass 2>/dev/null
+    pass -c $chosen_pass 2>/dev/null
 elif [[ $chosen_action == "Edit" ]]; then
     chosen_pass=$(printf '%s\n' "${passFiles[@]}" | fuzzel --dmenu -p "Pass: ")
-    [[ -n $password ]] || exit
     kitty pass edit $chosen_pass
 elif [[ $chosen_action == "Generate" ]]; then
     chosen_pass=$(fuzzel --dmenu -p "Name:")
     pass generate $chosen_pass 
 elif [[ $chosen_action == "Remove" ]]; then
     chosen_pass=$(printf '%s\n' "${passFiles[@]}" | fuzzel --dmenu -p "Pass: ")
-    [[ -n $password ]] || exit
     kitty pass rm $chosen_pass
 elif [[ $chosen_action == "Insert" ]]; then
     chosen_pass=$(fuzzel --dmenu -p "Name")

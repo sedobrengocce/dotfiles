@@ -146,22 +146,24 @@ alias lsql=lazysql
 alias neofetch=fastfetch
 
 ## ENVIRONMENT VARIABLES
-set -x ANDROID_HOME $HOME/android-sdk
+set -x ANDROID_HOME /opt/android-sdk
 set -x JAVA_HOME /usr/lib/jvm/java-17-openjdk
 set -x HYPRSHOT_DIR $HOME/Pictures
 set -x EDITOR nvim
 set -x LC_ALL en_US.UTF-8
+set -x BW_SESSION J4VqFMpGEd4BwWyKRsnAjUw6QgvAlBLXS2snxdja3WVxWhA50oiY8a0RKvR42Iy0dmrFZJE4RktmbNs+cUOksA==
+set -x CHROME_EXECUTABLE google-chrome-stable
 
 ## PATHS
 set -x PATH $HOME/.local/share/gem/ruby/3.0.0/bin $PATH
 set -x PATH $HOME/go/bin $PATH
 set -x PATH $HOME/.pub-cache/bin $PATH
-set -x PATH $ANDROID_HOME/platform-tools $PATH
 set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/local/bin $PATH
 set -x PATH $HOME/bin $PATH
 set -x PATH $HOME/development/flutter/bin $PATH
 set -x PATH $HOME/.local/share/gem/ruby/3.3.0/bin $PATH
+set -x PATH /opt/android-sdk $PATH
 
 ## FZF
 set -l fg "#eeffff"
