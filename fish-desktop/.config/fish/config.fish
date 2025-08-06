@@ -144,6 +144,8 @@ alias lg=lazygit
 alias ld=lazydocker
 alias lsql=lazysql
 alias neofetch=fastfetch
+alias mount='udisksctl mount -b'
+alias umount='udisksctl unmount -b'
 
 ## ENVIRONMENT VARIABLES
 set -x ANDROID_HOME /opt/android-sdk
@@ -153,6 +155,7 @@ set -x EDITOR nvim
 set -x LC_ALL en_US.UTF-8
 set -x BW_SESSION J4VqFMpGEd4BwWyKRsnAjUw6QgvAlBLXS2snxdja3WVxWhA50oiY8a0RKvR42Iy0dmrFZJE4RktmbNs+cUOksA==
 set -x CHROME_EXECUTABLE google-chrome-stable
+set export $(envsubst < $HOME/.env)
 
 ## PATHS
 set -x PATH $HOME/.local/share/gem/ruby/3.0.0/bin $PATH

@@ -10,11 +10,13 @@
     "cpu",
     "temperature",
     "custom/firstdecoration",
-    "wlr/workspaces",
+    "custom/pomodoro",
     "custom/seconddecoration",
     "hyprland/window",
   ],
   "modules-right": [
+    "custom/wg",
+    "custom/separator",
     "network",
     "custom/separator",
     "bluetooth",
@@ -66,6 +68,17 @@
   "custom/fourthdecoration": {
     "format": "",
     "tooltip": false,
+  },
+  "custom/wg": {
+    "exec": "exec ~/.config/waybar/scripts/waybar-wg.sh --status",
+    "format": "{icon}",
+    "format-icons": {
+        "connected": "🔒",
+        "disconnected": "🔓",
+    },
+    "interval": 3,
+    "on-click": "~/.config/waybar/scripts/waybar-wg.sh --toggle",
+    "return-type": "json",
   },
   "clock": {
     "format": "{:%a, %Y%m%d  %H%M}",
@@ -131,5 +144,12 @@
     "format-off": "󰂲 ",
     "tooltip-format": " {device_alias} {device_battery_percentage}%",
     "on-click": "killall blueman-manager || blueman-manager",
+  },
+  "custom/pomodoro": {
+      "format": "{}",
+      "return-type": "json",
+      "exec": "waybar-module-pomodoro --autow --autob",
+      "on-click": "waybar-module-pomodoro toggle",
+      "on-click-right": "waybar-module-pomodoro reset",
   },
 }

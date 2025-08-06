@@ -64,6 +64,12 @@ tooltip {
     background: #1a1a1a;
 }
 
+#custom-pomodoro {
+    background: #1a1a1a;
+    color: #eeffff;
+    padding: 0 5px;
+}
+
 #workspaces {
     background: #1a1a1a;
     color: #eeffff;
