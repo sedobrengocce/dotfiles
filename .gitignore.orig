@@ -2,7 +2,10 @@ nvim/lazy-lock.json
 vifm/vifminfo.json
 tmux/plugins/**/*
 btop/btop.log
+<<<<<<< HEAD
 btop/.config/btop/btop.log
+=======
 tmux/.tmux/plugins/tmux-sessionx
 nvim/.config/nvim/lazy-lock.json
 gitconfig/.gitconfig
+>>>>>>> e8f71d65b835f96e3e8153c661a06282b30931f8
