@@ -14,8 +14,9 @@ log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 [aliases]
 sync = ['git', 'fetch', '--all-remotes']
 evolve = ['rebase', '--skip-empty', '-d', 'main']
-cl = ['git', 'push', '-r', '@']
+c = ['git', 'push', '-r', '@']
+cl = ['git', 'push', '-r', '@-']
 setmain = ["bookmark", "move", "main", "--to", "@"]
 setdev = ["bookmark", "move", "develop", "--to", "@"]
 logxl = ['log', '-r', 'all()']
-
+commit = ['desc', '@'] 
