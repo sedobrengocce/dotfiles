@@ -13,7 +13,7 @@ log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 
 [aliases]
 sync = ['git', 'fetch', '--all-remotes']
-evolve = ['rebase', '--skip-empty', '-d', 'main']
+evolve = ['rebase', '--skip-emptied', '-d', 'main']
 c = ['git', 'push', '-r', '@']
 cl = ['git', 'push', '-r', '@-']
 setmain = ["bookmark", "move", "main", "--to", "@-"]
