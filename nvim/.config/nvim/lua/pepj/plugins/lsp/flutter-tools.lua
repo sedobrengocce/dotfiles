@@ -54,8 +54,35 @@ return {
 		end
 
         flutter_tools.setup {
+            fvm = false,
+            widget_guides = {
+                enabled = true,
+            },
             lsp = {
+                autostart = true,
+                settings = {
+                    showTodos = true,
+                    completeFunctionCalls = true,
+                    renameFilesWithClasses = "prompt",
+                    enableSnippets = true,
+                    analysisExcludedFolders = { vim.fn.expand "$HOME/.pub-cache" },
+                    updateImportsOnRename = true,
+                    analysisOptions = {
+                        strict = true,
+                    },
+                },
                 on_attach = on_attach,
+                debugger = {
+                    enabled = true,
+                    run_via_dap = true, -- use nvim-dap for debugging
+                    exception_breakpoints = {
+                        -- use this to set exception breakpoints
+                        -- "all", -- break on all exceptions
+                        -- "unhandled", -- break on unhandled exceptions
+                        -- "none", -- do not break on any exceptions
+                    },
+                    register_configurations = true, -- register configurations for nvim-dap
+                },
             },
         }
     end

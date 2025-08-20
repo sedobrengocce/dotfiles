@@ -135,6 +135,9 @@ return {
 			type = "executable",
 			command = "flutter",
 			args = { "-v", "debug-adapter" },
+            options = {
+                detached = false, -- set to true if you want to run the debug adapter in a separate process
+            },
 		}
 		dap.configurations.dart = {
 			{
