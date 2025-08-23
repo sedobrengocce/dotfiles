@@ -6,12 +6,13 @@ email = "pepj2000@gmail.com"
 
 [ui]
 editor = "nvim"
-default-command = "log"
+default-command = "info"
 
 [revsets]
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 
 [aliases]
+info = ['util', 'exec', '--', 'sh', '-c', 'jj st && jj log']
 sync = ['git', 'fetch', '--all-remotes']
 evolve = ['rebase', '--skip-emptied', '-d', 'main']
 c = ['git', 'push', '-r', '@']
