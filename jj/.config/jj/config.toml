@@ -23,3 +23,8 @@ setdev = ["bookmark", "move", "develop", "--to", "@-"]
 logxl = ['log', '-r', 'all()']
 l5 = ['log', '-r', 'ancestors(@, 5)']
 l10 = ['log', '-r', 'ancestors(@, 10)']
+cb = ['util', 'exec', '--', 'bash', '-c', """
+set -euo pipefail
+jj bookmark move $1 --to @- && jj git push -r @-
+""", ''] 
+
