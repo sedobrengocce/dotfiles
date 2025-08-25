@@ -12,7 +12,7 @@ default-command = "info"
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 
 [aliases]
-info = ['util', 'exec', '--', 'sh', '-c', 'jj st && jj log']
+info = ['util', 'exec', '--', 'sh', '-c', 'jj diff --name-only -f @ -t @- && jj log']
 sync = ['git', 'fetch', '--all-remotes']
 evolve = ['rebase', '--skip-emptied', '-d', 'main']
 c = ['git', 'push', '-r', '@']
