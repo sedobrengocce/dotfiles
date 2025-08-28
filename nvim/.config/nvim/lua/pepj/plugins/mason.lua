@@ -14,9 +14,6 @@ return {
 			"jsonls",
 			"yamlls",
 		},
-		automatic_enable = {
-			exclude = { "dartls" },
-		},
 	},
 	dependencies = {
 		{

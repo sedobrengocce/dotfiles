@@ -103,5 +103,121 @@ return {
 			desc = "Run Last",
 		},
 	},
-	config = true,
+	config = function()
+		local dap = require("dap")
+
+		dap.adapters.delve = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = "dlv",
+				args = { "dap", "-l", "127.0.0.1:${port}" },
+			},
+		}
+
+		dap.configurations.go = {
+			{
+				type = "delve",
+				name = "Debug",
+				request = "launch",
+				program = "${file}",
+			},
+			{
+				type = "delve",
+				name = "Debug test",
+				mode = "test",
+				request = "launch",
+				program = "${file}",
+			},
+			{
+				type = "delve",
+				name = "Debug test (go.mod)",
+				mode = "test",
+				request = "launch",
+				program = "./${relativeFileDirname}",
+			},
+		}
+
+		dap.configurations.dart = {
+			{
+				type = "dart",
+				request = "launch",
+				name = "Launch dart",
+				dartSdkPath = "/home/pepj/development/flutter/bin/cache/dart-sdk/bin/dart", -- ensure this is correct
+				flutterSdkPath = "/home/pepj/development/flutter/bin/flutter", -- ensure this is correct
+				program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+				cwd = "${workspaceFolder}",
+			},
+			{
+				type = "flutter",
+				request = "launch",
+				name = "Launch flutter",
+				dartSdkPath = "/home/pepj/development/flutter/bin/cache/dart-sdk/bin/dart", -- ensure this is correct
+				flutterSdkPath = "/home/pepj/development/flutter/bin/flutter", -- ensure this is correct
+				program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
+				cwd = "${workspaceFolder}",
+			},
+		}
+
+		dap.adapters.dart = {
+			type = "executable",
+			command = "dart",
+			args = { "debug_adapter" },
+			options = {
+				detached = false,
+			},
+		}
+		dap.adapters.flutter = {
+			type = "executable",
+			command = "flutter",
+			args = { "debug_adapter" },
+			options = {
+				detached = false,
+			},
+		}
+
+		dap.adapters.gdb = {
+			type = "executable",
+			command = "gdb",
+			args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+		}
+
+		dap.configurations.c = {
+			{
+				name = "Launch",
+				type = "gdb",
+				request = "launch",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopAtBeginningOfMainSubprogram = false,
+			},
+			{
+				name = "Select and attach to process",
+				type = "gdb",
+				request = "attach",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+				end,
+				pid = function()
+					local name = vim.fn.input("Executable name (filter): ")
+					return require("dap.utils").pick_process({ filter = name })
+				end,
+				cwd = "${workspaceFolder}",
+			},
+			{
+				name = "Attach to gdbserver :1234",
+				type = "gdb",
+				request = "attach",
+				target = "localhost:1234",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+			},
+		}
+
+		dap.configurations.cpp = dap.configurations.c
+	end,
 }

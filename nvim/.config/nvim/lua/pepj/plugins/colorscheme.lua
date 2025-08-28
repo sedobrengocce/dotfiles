@@ -23,7 +23,7 @@ return {
 						hide_filename_extension = false,
 						show_modified_status = true,
 
-						mode = 0,
+						mode = 4,
 
 						filetype_names = {
 							TelescopePrompt = "Telescope",
