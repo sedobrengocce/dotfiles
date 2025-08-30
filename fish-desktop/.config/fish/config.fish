@@ -213,3 +213,5 @@ _fzf_bind
 
 ## ZOXIDE
 zoxide init fish --cmd cd | source
+
+thefuck --alias | source
