@@ -29,4 +29,5 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
-vim.opt.foldmethod = "syntax"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
