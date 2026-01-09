@@ -7,6 +7,7 @@ email = "pepj2000@gmail.com"
 [ui]
 editor = "nvim"
 default-command = "info"
+merge-editor = ":builtin"
 
 [revsets]
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
@@ -24,6 +25,10 @@ setdev = ["bookmark", "move", "develop", "--to", "@-"]
 logxl = ['log', '-r', 'all()']
 l5 = ['log', '-r', 'ancestors(@, 5)']
 l10 = ['log', '-r', 'ancestors(@, 10)']
+move = ['util', 'exec', '--', 'bash', '-c', """
+set -euo pipefail
+jj bookmark move $1 --to @-
+""", ''] 
 cb = ['util', 'exec', '--', 'bash', '-c', """
 set -euo pipefail
 jj bookmark move $1 --to @- && jj git push -r @-
